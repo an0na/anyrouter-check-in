@@ -1,3 +1,4 @@
+```yaml
 name: AnyRouter 自动签到
 on:
   schedule:
@@ -47,16 +48,13 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y xvfb fonts-noto-color-emoji fonts-freefont-ttf fonts-unifont \
-          fonts-ipafont-gothic fonts-wqy-zenhei fonts-tlwg-loma-otf
+          fonts-ipafont-gothic fonts-wqy-zenhei fonts-tlwg-loma-otf \
+          libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 \
+          libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2
 
-    - name: 缓存 CloakBrowser 二进制
-      uses: actions/cache@v5
-      id: cloakbrowser-cache
-      with:
-        path: ~/.cloakbrowser
-        key: ${{ runner.os }}-cloakbrowser-v1
-        restore-keys: |
-          ${{ runner.os }}-cloakbrowser-
+    - name: 清理损坏的 CloakBrowser 缓存
+      run: |
+        rm -rf ~/.cloakbrowser
 
     - name: 安装 CloakBrowser
       run: |
@@ -142,3 +140,5 @@ jobs:
           echo "调试截图已上传为 artifact: checkin-screenshots-${{ github.run_id }}"
           ls -la checkin_screenshots/
         fi
+
+```
