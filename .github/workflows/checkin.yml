@@ -1,4 +1,3 @@
-```yaml
 name: AnyRouter 自动签到
 on:
   schedule:
@@ -140,5 +139,3 @@ jobs:
           echo "调试截图已上传为 artifact: checkin-screenshots-${{ github.run_id }}"
           ls -la checkin_screenshots/
         fi
-
-```
